@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Network Forensics & Practical Incident Response</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<header class="topbar"><div class="brand">WTH<span>•</span>HANDBOOK</div><button id="menuBtn" class="menu-btn">☰</button></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><div class="side-title">CONTENTS</div><a class="nav" href="../index.html">⌂ Introduction</a>
+<div class="section">MODULES</div>
+<a class="nav active" href="chapter-2.html">1. Leveraging Native Windows Tools</a>
+<a class="nav active" href="chapter-3.html">2. Introduction to the Sysinternals Suite</a>
+<a class="nav active" href="chapter-4.html">3. Advanced Process Monitoring & Threat Detection</a>
+<a class="nav active" href="chapter-5.html">4. Persistence and Telemetry Monitoring</a>
+<a class="nav active" href="chapter-6.html">5. Network Forensics & Practical Incident Response</a>
+<a class="nav active" href="chapter-7.html">6. Memory Forensics & Rootkit Detection</a>
+<a class="nav active" href="chapter-8.html">7. Windows Kernel, Drivers & Advanced Rootkit Detection</a>
+<a class="nav active" href="chapter-9.html">8. UEFI, Bootkits & Firmware Security</a>
+<a class="nav active" href="chapter-10.html">9. Android Security & ADB Forensics</a>
+<a class="nav active" href="chapter-11.html">10. Zero-Click Exploits, Messaging Threats & Mobile Defense</a>
+<a class="nav active" href="chapter-12.html">11. Reverse Engineering for Defenders</a>
+<a class="nav active" href="chapter-13.html">12. Malware Analysis Lab & Safe Reverse Engineering</a>
+<a class="nav active" href="chapter-14.html">13. Threat Intelligence, YARA & Detection Engineering</a>
+<a class="nav active" href="chapter-15.html">14. Advanced Incident Response & Digital Forensics</a>
+<a class="nav active" href="chapter-16.html">15. Enterprise EDR, SIEM & Security Operations</a>
+<a class="nav active" href="chapter-17.html">16. Security Hardening & Prevention</a>
+<a class="nav active" href="chapter-18.html">17. Analyst Playbooks & Reference Workflows</a>
+</aside><main class="content article"><div class="chapter-meta">Module 6 · Chapter 6</div><h1>Network Forensics & Practical Incident Response</h1>
+<p class="lead">Network evidence can expose behavior that endpoint tools fail to explain. The goal is to understand which process communicated, where it connected, when it connected, and whether the communication fits the system's role.</p>
+<h2>6.1 TCPView</h2>
+<p>TCPView provides a live view of TCP and UDP endpoints. Use it to map active connections to processes and identify unexpected destinations or listening services.</p>
+<h2>6.2 Practical Suspicious-File Workflow</h2>
+<ol><li>Do not execute an unknown file on a production endpoint simply to “see what happens.”</li><li>Record file name, path, hash, source, timestamps, and user context.</li><li>Determine whether the file is expected for the installed application.</li><li>If dynamic analysis is authorized, use an isolated laboratory or sandbox.</li><li>Observe process creation, file changes, registry changes, and network activity.</li><li>Correlate telemetry into a timeline.</li><li>Contain according to incident-response procedures.</li><li>Preserve relevant evidence before cleanup where feasible.</li></ol>
+<h2>6.3 Network Indicators</h2>
+<p>Useful indicators include unusual destinations, periodic beacon-like timing, unexpected protocols, newly observed domains, abnormal DNS behavior, and a process communicating in a way inconsistent with its function.</p>
+<h2>6.4 Incident Response</h2>
+<div class="compare"><div><h4>Contain</h4><p>Reduce the ability of the suspected system to cause further harm while preserving evidence and business continuity.</p></div><div><h4>Eradicate & Recover</h4><p>Remove the cause, restore trusted state, validate controls, and monitor for recurrence.</p></div></div>
+<h2>6.5 Reporting</h2>
+<p>A useful incident report separates observed facts from analyst interpretation. Include timestamps, evidence identifiers, affected assets, confidence, actions taken, and unresolved questions.</p>
+<div class="chapter-nav"><a href="../index.html">← Contents</a><a href="../index.html">Back to book →</a></div><footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Modular Edition</footer></main></div><script src="../assets/app.js"></script></body></html>

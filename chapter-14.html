@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Threat Intelligence, YARA & Detection Engineering</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<header class="topbar"><div class="brand">WTH<span>•</span>HANDBOOK</div><button id="menuBtn" class="menu-btn">☰</button></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><div class="side-title">CONTENTS</div><a class="nav" href="../index.html">⌂ Introduction</a>
+<div class="section">MODULES</div>
+<a class="nav active" href="chapter-2.html">1. Leveraging Native Windows Tools</a>
+<a class="nav active" href="chapter-3.html">2. Introduction to the Sysinternals Suite</a>
+<a class="nav active" href="chapter-4.html">3. Advanced Process Monitoring & Threat Detection</a>
+<a class="nav active" href="chapter-5.html">4. Persistence and Telemetry Monitoring</a>
+<a class="nav active" href="chapter-6.html">5. Network Forensics & Practical Incident Response</a>
+<a class="nav active" href="chapter-7.html">6. Memory Forensics & Rootkit Detection</a>
+<a class="nav active" href="chapter-8.html">7. Windows Kernel, Drivers & Advanced Rootkit Detection</a>
+<a class="nav active" href="chapter-9.html">8. UEFI, Bootkits & Firmware Security</a>
+<a class="nav active" href="chapter-10.html">9. Android Security & ADB Forensics</a>
+<a class="nav active" href="chapter-11.html">10. Zero-Click Exploits, Messaging Threats & Mobile Defense</a>
+<a class="nav active" href="chapter-12.html">11. Reverse Engineering for Defenders</a>
+<a class="nav active" href="chapter-13.html">12. Malware Analysis Lab & Safe Reverse Engineering</a>
+<a class="nav active" href="chapter-14.html">13. Threat Intelligence, YARA & Detection Engineering</a>
+<a class="nav active" href="chapter-15.html">14. Advanced Incident Response & Digital Forensics</a>
+<a class="nav active" href="chapter-16.html">15. Enterprise EDR, SIEM & Security Operations</a>
+<a class="nav active" href="chapter-17.html">16. Security Hardening & Prevention</a>
+<a class="nav active" href="chapter-18.html">17. Analyst Playbooks & Reference Workflows</a>
+</aside><main class="content article"><div class="chapter-meta">Module 14 · Chapter 14</div><h1>Threat Intelligence, YARA & Detection Engineering</h1>
+<p class="lead">Threat intelligence turns individual observations into reusable detections. Good detection engineering emphasizes durable behavior and context rather than brittle indicators alone.</p>
+<h2>14.1 Indicators</h2>
+<p>Hashes, domains, IP addresses, filenames, registry paths, and certificates can be useful, but they change. Behavioral and contextual detections often remain valuable longer.</p>
+<h2>14.2 YARA</h2>
+<p>YARA rules can classify files or memory content based on patterns. Build rules from stable characteristics and test them against both known positives and representative benign samples.</p>
+<h2>14.3 Sigma and Log Detection</h2>
+<p>Sigma-style detections express log-based behavior in a platform-neutral form. Focus on meaningful combinations such as suspicious parent-child relationships, unusual command interpreters, or unexpected persistence changes.</p>
+<h2>14.4 Detection Lifecycle</h2>
+<ol><li>Define the threat hypothesis.</li><li>Identify available telemetry.</li><li>Write a minimal detection.</li><li>Test against benign activity.</li><li>Measure false positives.</li><li>Add context and tuning.</li><li>Document and review periodically.</li></ol>
+<div class="chapter-nav"><a href="../index.html">← Contents</a><a href="../index.html">Back to book →</a></div><footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Modular Edition</footer></main></div><script src="../assets/app.js"></script></body></html>

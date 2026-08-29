@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Advanced Process Monitoring & Threat Detection</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<header class="topbar"><div class="brand">WTH<span>•</span>HANDBOOK</div><button id="menuBtn" class="menu-btn">☰</button></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><div class="side-title">CONTENTS</div><a class="nav" href="../index.html">⌂ Introduction</a>
+<div class="section">MODULES</div>
+<a class="nav active" href="chapter-2.html">1. Leveraging Native Windows Tools</a>
+<a class="nav active" href="chapter-3.html">2. Introduction to the Sysinternals Suite</a>
+<a class="nav active" href="chapter-4.html">3. Advanced Process Monitoring & Threat Detection</a>
+<a class="nav active" href="chapter-5.html">4. Persistence and Telemetry Monitoring</a>
+<a class="nav active" href="chapter-6.html">5. Network Forensics & Practical Incident Response</a>
+<a class="nav active" href="chapter-7.html">6. Memory Forensics & Rootkit Detection</a>
+<a class="nav active" href="chapter-8.html">7. Windows Kernel, Drivers & Advanced Rootkit Detection</a>
+<a class="nav active" href="chapter-9.html">8. UEFI, Bootkits & Firmware Security</a>
+<a class="nav active" href="chapter-10.html">9. Android Security & ADB Forensics</a>
+<a class="nav active" href="chapter-11.html">10. Zero-Click Exploits, Messaging Threats & Mobile Defense</a>
+<a class="nav active" href="chapter-12.html">11. Reverse Engineering for Defenders</a>
+<a class="nav active" href="chapter-13.html">12. Malware Analysis Lab & Safe Reverse Engineering</a>
+<a class="nav active" href="chapter-14.html">13. Threat Intelligence, YARA & Detection Engineering</a>
+<a class="nav active" href="chapter-15.html">14. Advanced Incident Response & Digital Forensics</a>
+<a class="nav active" href="chapter-16.html">15. Enterprise EDR, SIEM & Security Operations</a>
+<a class="nav active" href="chapter-17.html">16. Security Hardening & Prevention</a>
+<a class="nav active" href="chapter-18.html">17. Analyst Playbooks & Reference Workflows</a>
+</aside><main class="content article"><div class="chapter-meta">Module 4 · Chapter 4</div><h1>Advanced Process Monitoring & Threat Detection</h1>
+<p class="lead">Process analysis becomes powerful when process identity, ancestry, executable location, signatures, loaded modules, handles, and behavior are examined together.</p>
+<h2>4.1 Process Explorer Deep Dive</h2>
+<p>Start with the process tree. Parent-child relationships often provide more context than process names. Inspect image paths, command lines, users, integrity levels, signatures, and verified publisher information where available.</p>
+<h2>4.2 Reputation and Hashing</h2>
+<p>File hashes can support reputation checks against trusted intelligence services. Treat reputation scores as evidence, not verdicts: a previously unseen file may simply be new, while a signed file can still be abused.</p>
+<div class="note"><strong>Privacy rule:</strong> Do not upload confidential binaries, memory dumps, or proprietary files to public services without authorization and an appropriate data-handling decision.</div>
+<h2>4.3 Process Monitor (ProcMon)</h2>
+<p>ProcMon is best used with focused filters. Capture the suspicious process, its child processes, and relevant file/registry activity around the event. Excessively broad captures can become difficult to interpret.</p>
+<h3>Investigation questions</h3>
+<ul><li>What files did the process create or modify?</li><li>Which registry locations did it access?</li><li>Did it launch another process?</li><li>Did activity occur immediately before network communication?</li><li>Does the observed behavior match the application's legitimate function?</li></ul>
+<h2>4.4 Signed Does Not Mean Safe</h2>
+<p>Authenticode signatures help establish publisher identity and file integrity relative to the signed content. They do not prove that the application is being used legitimately. Analysts should combine signatures with path, parent process, command line, and behavior.</p>
+<div class="chapter-nav"><a href="../index.html">← Contents</a><a href="../index.html">Back to book →</a></div><footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Modular Edition</footer></main></div><script src="../assets/app.js"></script></body></html>
