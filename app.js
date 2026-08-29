@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById("menuBtn"),s=document.getElementById("sidebar");if(b)b.addEventListener("click",()=>s.classList.toggle("open"));document.querySelectorAll(".nav").forEach(a=>a.addEventListener("click",()=>s&&s.classList.remove("open")));});
