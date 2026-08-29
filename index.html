@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WTH Handbook · Complete Website</title>
+    <style>
+        /* ── global reset & base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f6f8fa;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── topbar ── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #0b1120;
+            color: #e2e8f0;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+        .brand span {
+            color: #3b82f6;
+            margin: 0 0.2rem;
+        }
+        .menu-btn {
+            background: none;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            font-size: 1.6rem;
+            padding: 0 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            line-height: 2rem;
+            transition: 0.2s;
+        }
+        .menu-btn:hover {
+            background: #1e293b;
+        }
+
+        /* ── layout ── */
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 4.2rem);
+        }
+
+        /* ── sidebar ── */
+        .sidebar {
+            width: 280px;
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 1.5rem 1rem;
+            overflow-y: auto;
+            flex-shrink: 0;
+            border-right: 1px solid #1e293b;
+            transition: transform 0.25s ease;
+        }
+        .sidebar .side-title {
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin: 0 0 1rem 0.5rem;
+            text-transform: uppercase;
+        }
+        .sidebar .section {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin: 1.2rem 0 0.4rem 0.5rem;
+        }
+        .sidebar .nav {
+            display: block;
+            padding: 0.4rem 0.5rem;
+            border-radius: 4px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            transition: 0.15s;
+        }
+        .sidebar .nav:hover {
+            background: #1e293b;
+            color: #e2e8f0;
+            text-decoration: none;
+        }
+        .sidebar .nav.active {
+            background: #1e293b;
+            color: #f1f5f9;
+            font-weight: 500;
+        }
+        .sidebar .nav small {
+            color: #64748b;
+            font-size: 0.7rem;
+            margin-left: 0.4rem;
+        }
+
+        /* ── content ── */
+        .content {
+            flex: 1;
+            padding: 2rem 2.5rem;
+            max-width: 900px;
+            background: #ffffff;
+            min-height: calc(100vh - 4.2rem);
+        }
+        .content.article {
+            background: #ffffff;
+        }
+
+        .chapter-meta {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .content h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 0.2rem 0 0.8rem 0;
+            color: #0f172a;
+        }
+        .content h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 2rem 0 0.8rem 0;
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.3rem;
+        }
+        .content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.4rem 0 0.5rem 0;
+            color: #1e293b;
+        }
+        .content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0.8rem 0 0.2rem 0;
+            color: #1e293b;
+        }
+        .content p,
+        .content li {
+            color: #1e293b;
+        }
+        .content .lead {
+            font-size: 1.15rem;
+            color: #334155;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.2rem;
+            margin: 0.8rem 0 1.2rem 0;
+            font-weight: 400;
+        }
+
+        .content ul,
+        .content ol {
+            padding-left: 1.6rem;
+            margin: 0.6rem 0 1rem 0;
+        }
+        .content li {
+            margin-bottom: 0.3rem;
+        }
+
+        .content .note {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.4rem;
+            border-radius: 4px;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+        .content .callout {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.4rem;
+            border-radius: 4px;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+        .content .code-card {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+        }
+        .content .code-card .code-title {
+            color: #94a3b8;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+        .content .code-card pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .content .compare {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0 1.2rem 0;
+            flex-wrap: wrap;
+        }
+        .content .compare>div {
+            flex: 1;
+            min-width: 200px;
+            background: #f8fafc;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .content .compare>div h4 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+        .content .compare>div p {
+            margin: 0.3rem 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        .content .checklist {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.2rem 0;
+        }
+        .content .checklist h3 {
+            margin-top: 0;
+            margin-bottom: 0.6rem;
+        }
+        .content .checklist label {
+            display: block;
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+            cursor: default;
+        }
+
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 0 0.5rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .chapter-nav a {
+            font-weight: 500;
+            padding: 0.3rem 0;
+        }
+
+        .content footer {
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.2rem;
+            text-align: center;
+        }
+        .content footer span {
+            margin: 0 0.3rem;
+        }
+
+        /* ── mobile sidebar toggle ── */
+        @media (max-width: 780px) {
+            .sidebar {
+                position: fixed;
+                top: 4.2rem;
+                left: 0;
+                bottom: 0;
+                width: 280px;
+                transform: translateX(-105%);
+                z-index: 99;
+                border-right: none;
+                box-shadow: 2px 0 20px rgba(0, 0, 0, 0.4);
+                padding-top: 0.5rem;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .content {
+                padding: 1.2rem 1.2rem;
+            }
+            .content h1 {
+                font-size: 1.8rem;
+            }
+            .content h2 {
+                font-size: 1.3rem;
+            }
+            .compare {
+                flex-direction: column;
+            }
+            .topbar {
+                padding: 0.6rem 1rem;
+            }
+        }
+
+        /* ── index.html specific ── */
+        .cover-title {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        .cover-sub {
+            font-size: 1.2rem;
+            color: #475569;
+            margin-bottom: 1.5rem;
+        }
+        .cover-meta {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.8rem 1.5rem;
+            margin: 1.5rem 0 2rem 0;
+        }
+        .toc-grid a {
+            display: block;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+            font-weight: 500;
+            transition: 0.15s;
+        }
+        .toc-grid a:hover {
+            background: #eff6ff;
+            border-color: #3b82f6;
+            text-decoration: none;
+        }
+        .toc-grid a small {
+            font-weight: 400;
+            color: #64748b;
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 0.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ TOPBAR ═══ -->
+    <header class="topbar">
+        <div class="brand">WTH<span>•</span>HANDBOOK</div>
+        <button id="menuBtn" class="menu-btn" aria-label="Toggle navigation">☰</button>
+    </header>
+
+    <!-- ═══ LAYOUT ═══ -->
+    <div class="layout">
+
+        <!-- ─── SIDEBAR ─── -->
+        <aside class="sidebar" id="sidebar">
+            <div class="side-title">CONTENTS</div>
+
+            <!-- Introduction (always visible) -->
+            <a class="nav active" href="#introduction">⌂ Introduction</a>
+
+            <div class="section">MODULE 1</div>
+            <a class="nav" href="#ch1">1. Foundations of Windows Threat Hunting</a>
+
+            <div class="section">MODULE 2</div>
+            <a class="nav" href="#ch2">2. Leveraging Native Windows Tools</a>
+
+            <div class="section">MODULE 3</div>
+            <a class="nav" href="#ch3">3. Introduction to the Sysinternals Suite</a>
+
+            <div class="section">MODULE 4</div>
+            <a class="nav" href="#ch4">4. Advanced Process Monitoring &amp; Threat Detection</a>
+
+            <div class="section">MODULE 5</div>
+            <a class="nav" href="#ch5">5. Persistence and Telemetry Monitoring</a>
+
+            <div class="section">MODULE 6</div>
+            <a class="nav" href="#ch6">6. Network Forensics &amp; Practical Incident Response</a>
+
+            <div class="section">MODULE 7</div>
+            <a class="nav" href="#ch7">7. Memory Forensics &amp; Rootkit Detection</a>
+
+            <div class="section">MODULE 8</div>
+            <a class="nav" href="#ch8">8. Windows Kernel, Drivers &amp; Advanced Rootkit Detection</a>
+
+            <div class="section">MODULE 9</div>
+            <a class="nav" href="#ch9">9. UEFI, Bootkits &amp; Firmware Security</a>
+
+            <div class="section">MODULE 10</div>
+            <a class="nav" href="#ch10">10. Android Security &amp; ADB Forensics</a>
+
+            <div class="section">MODULE 11</div>
+            <a class="nav" href="#ch11">11. Zero-Click Exploits, Messaging Threats &amp; Mobile Defense</a>
+
+            <div class="section">MODULE 12</div>
+            <a class="nav" href="#ch12">12. Reverse Engineering for Defenders</a>
+
+            <div class="section">MODULE 13</div>
+            <a class="nav" href="#ch13">13. Malware Analysis Lab &amp; Safe Reverse Engineering</a>
+
+            <div class="section">MODULE 14</div>
+            <a class="nav" href="#ch14">14. Threat Intelligence, YARA &amp; Detection Engineering</a>
+
+            <div class="section">MODULE 15</div>
+            <a class="nav" href="#ch15">15. Advanced Incident Response &amp; Digital Forensics</a>
+
+            <div class="section">MODULE 16</div>
+            <a class="nav" href="#ch16">16. Enterprise EDR, SIEM &amp; Security Operations</a>
+
+            <div class="section">MODULE 17</div>
+            <a class="nav" href="#ch17">17. Security Hardening &amp; Prevention</a>
+
+            <div class="section">MODULE 18</div>
+            <a class="nav" href="#ch18">18. Analyst Playbooks &amp; Reference Workflows</a>
+        </aside>
+
+        <!-- ─── MAIN CONTENT ─── -->
+        <main class="content article" id="mainContent">
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  INTRODUCTION  (index.html)                         -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="introduction">
+                <div class="chapter-meta">HANDBOOK · INTRODUCTION</div>
+                <h1 class="cover-title">Windows Threat Hunting<br>&amp; Malware Analysis</h1>
+                <p class="cover-sub">A modular handbook for defenders, analysts, and security practitioners.</p>
+                <p class="cover-meta">17 chapters · 18 modules · Practical workflows</p>
+
+                <div class="note">
+                    <strong>About this handbook</strong><br>
+                    This guide covers the full spectrum of Windows threat hunting — from native tools and Sysinternals
+                    to memory forensics, rootkit detection, mobile security, reverse engineering, and enterprise
+                    detection engineering. Each chapter is designed to be read independently or as part of the
+                    complete curriculum.
+                </div>
+
+                <h2>📖 Contents</h2>
+                <div class="toc-grid">
+                    <a href="#ch1">1. Foundations <small>Threat vectors, scripts, C2</small></a>
+                    <a href="#ch2">2. Native Tools <small>tasklist, resmon, Event Viewer</small></a>
+                    <a href="#ch3">3. Sysinternals <small>Process Explorer, ProcMon, Autoruns</small></a>
+                    <a href="#ch4">4. Process Monitoring <small>Deep dive, hashing, ProcMon</small></a>
+                    <a href="#ch5">5. Persistence &amp; Telemetry <small>Autoruns, Sysmon</small></a>
+                    <a href="#ch6">6. Network Forensics <small>TCPView, IR workflow</small></a>
+                    <a href="#ch7">7. Memory Forensics <small>Volatility, DKOM</small></a>
+                    <a href="#ch8">8. Kernel &amp; Drivers <small>Rootkits, ETW, HVCI</small></a>
+                    <a href="#ch9">9. UEFI &amp; Bootkits <small>Secure Boot, CHIPSEC</small></a>
+                    <a href="#ch10">10. Android Security <small>ADB, mobile forensics</small></a>
+                    <a href="#ch11">11. Zero-Click &amp; Messaging <small>Mobile defense</small></a>
+                    <a href="#ch12">12. Reverse Engineering <small>Static/dynamic, Ghidra</small></a>
+                    <a href="#ch13">13. Malware Lab <small>Isolation, safe analysis</small></a>
+                    <a href="#ch14">14. Threat Intelligence <small>YARA, Sigma, detection</small></a>
+                    <a href="#ch15">15. Incident Response <small>Containment, forensics</small></a>
+                    <a href="#ch16">16. Enterprise EDR &amp; SIEM <small>SOC, purple team</small></a>
+                    <a href="#ch17">17. Hardening &amp; Prevention <small>Windows, Android, network</small></a>
+                    <a href="#ch18">18. Playbooks <small>Repeatable workflows</small></a>
+                </div>
+
+                <div class="callout">
+                    <strong>How to use this handbook</strong><br>
+                    Each chapter includes learning objectives, practical commands, investigation workflows, and
+                    analyst checklists. Use the sidebar to navigate, or read sequentially for a complete course
+                    in Windows threat hunting and malware analysis.
+                </div>
+
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Introduction</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 1                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch1" style="display:none;">
+                <div class="chapter-meta">MODULE 1 · CHAPTER 1</div>
+                <h1>Foundations of Windows<br>Threat Hunting</h1>
+                <p class="lead">Threat hunting begins with a simple idea: suspicious activity becomes easier to recognize when you understand what normal activity looks like.</p>
+                <div class="note"><strong>Learning objectives</strong><br>By the end of this chapter you should be able to describe common Windows threat vectors, explain the role of scripts and C2 communications, distinguish live monitoring from post-incident forensics, and build a useful baseline for a Windows endpoint.</div>
+
+                <h2>1.1 Understanding Threat Vectors &amp; Script-Based Attacks</h2>
+                <p>A threat vector is the route or technique through which an attacker, malicious program, or unwanted action reaches a system. On Windows endpoints, this can involve phishing attachments, malicious documents, compromised installers, browser downloads, removable media, exposed services, stolen credentials, or scripts launched through trusted interpreters.</p>
+                <p>Script-based attacks deserve special attention because the attacker may not need to introduce a traditional executable immediately. A script can act as a loader, download additional content, modify configuration, create persistence, or invoke legitimate Windows components. Common interpreters include PowerShell, Windows Script Host components, and command shells.</p>
+
+                <h3>How a script-based intrusion can unfold</h3>
+                <ol>
+                    <li><strong>Initial delivery:</strong> a user receives a file, link, archive, or other content.</li>
+                    <li><strong>Execution:</strong> the user or another process launches the content.</li>
+                    <li><strong>Staging:</strong> the script may create temporary files, configuration data, or additional payloads.</li>
+                    <li><strong>Discovery:</strong> the activity may query processes, accounts, network configuration, or other system information.</li>
+                    <li><strong>Communication:</strong> the process may attempt to reach an external service for instructions or data transfer.</li>
+                    <li><strong>Persistence or follow-on activity:</strong> the actor may attempt to survive reboot or continue operating through another process.</li>
+                </ol>
+                <p>For a defender, the important question is not simply “Was a script executed?” Instead, ask: <em>Who launched it, from where, with which parent process, what did it touch, and what happened immediately afterward?</em></p>
+
+                <div class="callout"><strong>Analyst mindset:</strong> a single event rarely proves compromise. Strong findings usually come from connecting process, file, registry, user, and network evidence into a timeline.</div>
+
+                <h3>Recognizing suspicious script activity</h3>
+                <p>Useful indicators include an unusual parent-child relationship, execution from a temporary or user-writable directory, an unexpected script launched by an office application, newly created files followed by outbound connections, or a process whose name resembles a legitimate Windows component but whose path is unexpected.</p>
+                <p>These indicators should be treated as leads rather than automatic proof of maliciousness. Administrators, software updaters, management agents, and security tools can also generate unusual-looking activity.</p>
+
+                <h2>1.1.1 Command &amp; Control (C2)</h2>
+                <p>Command and Control describes the communication channel through which an operator or malicious infrastructure can influence a compromised system. C2 traffic can be direct or hidden within ordinary-looking protocols and services.</p>
+                <p>Threat hunters therefore look beyond the existence of a network connection. Useful context includes the initiating process, destination, timing, frequency, DNS activity, remote port, executable path, user context, and whether the connection is consistent with the endpoint's normal role.</p>
+
+                <div class="code-card"><div class="code-title">Example investigation questions</div><pre>Which process opened the connection?
+                    What is the process's executable path?
+                    Who owns the process?
+                    Was the process recently created?
+                    Is the destination expected for this application?
+                Did file or registry activity occur before the connection?</pre></div>
+
+                <h2>1.2 The Mindset of a Security Analyst</h2>
+                <p>Threat hunting is an evidence-driven discipline. Analysts continuously form hypotheses, test them against telemetry, and revise their conclusions as new evidence appears. The objective is not to label every unusual event as malicious; it is to reduce uncertainty using reliable evidence.</p>
+
+                <h3>Live monitoring vs. post-incident forensics</h3>
+                <div class="compare">
+                    <div><h4>Live monitoring</h4><p>Focuses on what is happening now. It is useful for observing process creation, resource usage, connections, and system changes while an event is active.</p></div>
+                    <div><h4>Post-incident forensics</h4><p>Focuses on reconstructing what happened. Analysts examine logs, timestamps, artifacts, persistence locations, hashes, and other preserved evidence.</p></div>
+                </div>
+                <p>The two approaches complement one another. Live monitoring can capture transient behavior that disappears quickly, while forensic analysis can provide a broader historical timeline.</p>
+
+                <h3>Establishing a healthy Windows baseline</h3>
+                <p>A baseline is a documented picture of expected behavior. It can include normal processes, installed software, startup entries, scheduled tasks, listening services, typical network destinations, and expected resource usage.</p>
+                <p>Baselines should be role-specific. A developer workstation, domain controller, file server, and kiosk can have very different normal behavior. A good baseline therefore records context instead of relying on a universal “safe process list.”</p>
+
+                <div class="checklist">
+                    <h3>Chapter 1 analyst checklist</h3>
+                    <label>□ Identify the endpoint's normal role and user context.</label>
+                    <label>□ Record expected applications and recurring processes.</label>
+                    <label>□ Review common startup and scheduled-task behavior.</label>
+                    <label>□ Observe normal outbound network activity.</label>
+                    <label>□ Note unusual parent-child process relationships.</label>
+                    <label>□ Preserve timestamps when investigating an incident.</label>
+                    <label>□ Correlate multiple evidence sources before concluding.</label>
+                </div>
+
+                <h2>Chapter summary</h2>
+                <p>Windows threat hunting is fundamentally about context and correlation. Script execution, process creation, persistence, and network communication are individual signals; when combined with a reliable baseline and a timeline, they become much more useful evidence. The next module moves from concepts into native Windows tools that help analysts observe these signals directly.</p>
+
+                <div class="chapter-nav"><a href="#introduction">← Contents</a><a href="#ch2">Next: Native Windows Tools →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 1</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 2                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch2" style="display:none;">
+                <div class="chapter-meta">Module 2 · Chapter 2</div>
+                <h1>Leveraging Native Windows Tools</h1>
+                <p class="lead">Native Windows utilities provide a first-response view of processes, resources, scheduled activity, and system events. They are powerful because they are already present, but they must be interpreted in context.</p>
+                <div class="note"><strong>Defensive scope:</strong> The techniques in this chapter are intended for authorized monitoring, triage, and incident response. They focus on observation rather than bypassing security controls.</div>
+                <h2>2.1 Command-Line Reconnaissance with tasklist</h2>
+                <p><code>tasklist</code> provides a snapshot of running processes. Start with process names, PIDs, session information, and memory usage, then correlate suspicious entries with their executable path and parent process using additional tools.</p>
+                <div class="code-card"><div class="code-title">Basic triage</div><pre>tasklist
+                    tasklist /svc
+                tasklist /v</pre></div>
+                <p>A process name alone is weak evidence. A familiar name running from an unexpected directory, under an unexpected account, or with an unusual parent process deserves additional investigation.</p>
+                <h2>2.2 Real-Time Performance &amp; Resource Tracking</h2>
+                <p>Resource Monitor (<code>resmon</code>) provides a useful operational view of CPU, memory, disk, and network activity. Use it to connect resource consumption with the processes responsible for it.</p>
+                <p>For network triage, examine processes with active connections and compare them with the endpoint's expected role. Unexpected outbound traffic is an investigation lead, not automatic proof of malware.</p>
+                <h2>2.3 Auditing Automated Triggers with Task Scheduler</h2>
+                <p>Task Scheduler is a legitimate automation system and therefore a common place to investigate persistence. Review task names, triggers, actions, run-as accounts, executable paths, and creation or modification timestamps.</p>
+                <p>Pay special attention to tasks that launch scripts or binaries from user-writable locations, have misleading names, or execute at unusual times.</p>
+                <h2>2.4 Event Viewer</h2>
+                <p>Event Viewer (<code>eventvwr.msc</code>) provides access to Windows logs. Analysts should learn the difference between Security, System, Application, and specialized operational logs.</p>
+                <div class="callout"><strong>Correlation principle:</strong> A process event becomes much more useful when its timestamp can be connected to a file creation, scheduled task, authentication event, registry modification, and network connection.</div>
+                <h2>Practical workflow</h2>
+                <ol><li>Record the hostname, user, time, and business role.</li><li>Review active processes.</li><li>Investigate unusual process paths and relationships.</li><li>Review scheduled tasks and recent system events.</li><li>Correlate timestamps before making a conclusion.</li><li>Preserve evidence before remediation where possible.</li></ol>
+                <div class="chapter-nav"><a href="#ch1">← Previous</a><a href="#ch3">Next: Sysinternals →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 2</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 3                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch3" style="display:none;">
+                <div class="chapter-meta">Module 3 · Chapter 3</div>
+                <h1>Introduction to the Sysinternals Suite</h1>
+                <p class="lead">The Sysinternals Suite is a collection of Windows diagnostic and security utilities. Its value comes from combining specialized views rather than treating any single tool as an oracle.</p>
+                <h2>3.1 Getting Started</h2>
+                <p>Download the Suite from Microsoft's official Sysinternals distribution, extract it to an analyst-controlled directory, and keep a known-good copy. In an enterprise, record tool versions as part of the investigation.</p>
+                <h2>3.2 Choosing the Right Tool</h2>
+                <div class="compare"><div><h4>Process Explorer</h4><p>Process trees, executable metadata, handles, signatures, and process relationships.</p></div><div><h4>Process Monitor</h4><p>Detailed file-system, registry, process, and network-related event tracing.</p></div></div>
+                <div class="compare"><div><h4>Autoruns</h4><p>Broad visibility into persistence and automatic execution locations.</p></div><div><h4>TCPView</h4><p>Real-time TCP/UDP endpoint and connection visibility.</p></div></div>
+                <h2>3.3 Trust and Verification</h2>
+                <p>Before relying on a tool during an investigation, verify its source and integrity. Keep copies of the exact versions used so another analyst can reproduce the workflow.</p>
+                <h2>3.4 Evidence Discipline</h2>
+                <p>Capture screenshots or exports only when useful, preserve timestamps, record filters, and document what was observed. Avoid changing a live system unnecessarily during collection.</p>
+                <div class="callout"><strong>Important:</strong> Sysinternals tools operate within the Windows security model. A sophisticated compromise may manipulate or hide information. Always consider independent evidence sources.</div>
+                <div class="chapter-nav"><a href="#ch2">← Previous</a><a href="#ch4">Next: Process Monitoring →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 3</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 4                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch4" style="display:none;">
+                <div class="chapter-meta">Module 4 · Chapter 4</div>
+                <h1>Advanced Process Monitoring &amp; Threat Detection</h1>
+                <p class="lead">Process analysis becomes powerful when process identity, ancestry, executable location, signatures, loaded modules, handles, and behavior are examined together.</p>
+                <h2>4.1 Process Explorer Deep Dive</h2>
+                <p>Start with the process tree. Parent-child relationships often provide more context than process names. Inspect image paths, command lines, users, integrity levels, signatures, and verified publisher information where available.</p>
+                <h2>4.2 Reputation and Hashing</h2>
+                <p>File hashes can support reputation checks against trusted intelligence services. Treat reputation scores as evidence, not verdicts: a previously unseen file may simply be new, while a signed file can still be abused.</p>
+                <div class="note"><strong>Privacy rule:</strong> Do not upload confidential binaries, memory dumps, or proprietary files to public services without authorization and an appropriate data-handling decision.</div>
+                <h2>4.3 Process Monitor (ProcMon)</h2>
+                <p>ProcMon is best used with focused filters. Capture the suspicious process, its child processes, and relevant file/registry activity around the event. Excessively broad captures can become difficult to interpret.</p>
+                <h3>Investigation questions</h3>
+                <ul><li>What files did the process create or modify?</li><li>Which registry locations did it access?</li><li>Did it launch another process?</li><li>Did activity occur immediately before network communication?</li><li>Does the observed behavior match the application's legitimate function?</li></ul>
+                <h2>4.4 Signed Does Not Mean Safe</h2>
+                <p>Authenticode signatures help establish publisher identity and file integrity relative to the signed content. They do not prove that the application is being used legitimately. Analysts should combine signatures with path, parent process, command line, and behavior.</p>
+                <div class="chapter-nav"><a href="#ch3">← Previous</a><a href="#ch5">Next: Persistence →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 4</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 5                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch5" style="display:none;">
+                <div class="chapter-meta">Module 5 · Chapter 5</div>
+                <h1>Persistence and Telemetry Monitoring</h1>
+                <p class="lead">Persistence analysis asks how an unwanted program could regain execution after restart, logon, service changes, or other system transitions.</p>
+                <h2>5.1 Autoruns</h2>
+                <p>Autoruns exposes a broad set of automatic execution locations. Review entries by publisher, path, timestamp, and expected software inventory. Investigate unsigned or unexpected entries, but remember that many legitimate utilities are unsigned or uncommon.</p>
+                <h2>5.2 Sysmon</h2>
+                <p>Sysmon extends Windows telemetry with configurable events. A commonly used installation pattern is:</p>
+                <div class="code-card"><div class="code-title">Authorized installation example</div><pre>sysmon.exe -i -accepteula</pre></div>
+                <p>In production, use a documented configuration appropriate to the environment. Excessive logging can create noise and storage pressure.</p>
+                <h2>5.3 Important Sysmon Events</h2>
+                <ul><li><strong>Event ID 1:</strong> process creation.</li><li><strong>Event ID 3:</strong> network connection.</li><li><strong>Image load and driver-related events:</strong> useful for investigating unusual components when configured.</li><li><strong>File and registry telemetry:</strong> valuable for correlating execution and persistence.</li></ul>
+                <h2>5.4 Building a Detection Story</h2>
+                <p>Instead of alerting on one event, build a chain: suspicious parent → unusual child → file modification → persistence change → outbound connection. The chain gives an analyst a hypothesis that can be tested.</p>
+                <div class="callout"><strong>Operational advice:</strong> document the exact Sysmon configuration and version used. Detection quality depends heavily on configuration and environment.</div>
+                <div class="chapter-nav"><a href="#ch4">← Previous</a><a href="#ch6">Next: Network Forensics →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 5</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 6                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch6" style="display:none;">
+                <div class="chapter-meta">Module 6 · Chapter 6</div>
+                <h1>Network Forensics &amp; Practical Incident Response</h1>
+                <p class="lead">Network evidence can expose behavior that endpoint tools fail to explain. The goal is to understand which process communicated, where it connected, when it connected, and whether the communication fits the system's role.</p>
+                <h2>6.1 TCPView</h2>
+                <p>TCPView provides a live view of TCP and UDP endpoints. Use it to map active connections to processes and identify unexpected destinations or listening services.</p>
+                <h2>6.2 Practical Suspicious-File Workflow</h2>
+                <ol><li>Do not execute an unknown file on a production endpoint simply to “see what happens.”</li><li>Record file name, path, hash, source, timestamps, and user context.</li><li>Determine whether the file is expected for the installed application.</li><li>If dynamic analysis is authorized, use an isolated laboratory or sandbox.</li><li>Observe process creation, file changes, registry changes, and network activity.</li><li>Correlate telemetry into a timeline.</li><li>Contain according to incident-response procedures.</li><li>Preserve relevant evidence before cleanup where feasible.</li></ol>
+                <h2>6.3 Network Indicators</h2>
+                <p>Useful indicators include unusual destinations, periodic beacon-like timing, unexpected protocols, newly observed domains, abnormal DNS behavior, and a process communicating in a way inconsistent with its function.</p>
+                <h2>6.4 Incident Response</h2>
+                <div class="compare"><div><h4>Contain</h4><p>Reduce the ability of the suspected system to cause further harm while preserving evidence and business continuity.</p></div><div><h4>Eradicate &amp; Recover</h4><p>Remove the cause, restore trusted state, validate controls, and monitor for recurrence.</p></div></div>
+                <h2>6.5 Reporting</h2>
+                <p>A useful incident report separates observed facts from analyst interpretation. Include timestamps, evidence identifiers, affected assets, confidence, actions taken, and unresolved questions.</p>
+                <div class="chapter-nav"><a href="#ch5">← Previous</a><a href="#ch7">Next: Memory Forensics →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 6</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 7                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch7" style="display:none;">
+                <div class="chapter-meta">Module 7 · Chapter 7</div>
+                <h1>Memory Forensics &amp; Rootkit Detection</h1>
+                <p class="lead">When an endpoint's normal views may be incomplete, memory forensics provides an independent source of evidence. It is particularly useful for investigating injected memory, hidden processes, unusual drivers, and artifacts that do not appear in ordinary process listings.</p>
+                <h2>7.1 Why Memory Matters</h2>
+                <p>Running programs and operating-system state exist in volatile memory. A disk-only investigation can miss transient execution or in-memory modifications.</p>
+                <h2>7.2 Volatility Workflow</h2>
+                <p>Acquire memory using an approved collection method, preserve the image, hash it, and analyze a copy. Framework plugins can enumerate processes, modules, network artifacts, handles, and other structures. Comparing independent enumeration methods can reveal inconsistencies.</p>
+                <div class="callout"><strong>Evidence principle:</strong> memory acquisition is sensitive to system state. Record acquisition time, tool version, host details, and chain-of-custody information.</div>
+                <h2>7.3 Rootkits and DKOM</h2>
+                <p>Kernel-level malware may attempt to manipulate operating-system structures. Analysts can look for discrepancies between different views of process, module, or object state. A discrepancy is a lead requiring validation, not proof by itself.</p>
+                <h2>7.4 Defensive Layers</h2>
+                <p>Use multiple sources: memory, event telemetry, trusted boot measurements, endpoint security, network telemetry, and offline analysis. The goal is resilience against manipulation of any one view.</p>
+                <div class="chapter-nav"><a href="#ch6">← Previous</a><a href="#ch8">Next: Kernel &amp; Drivers →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 7</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 8                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch8" style="display:none;">
+                <div class="chapter-meta">Module 8 · Chapter 8</div>
+                <h1>Windows Kernel, Drivers &amp; Advanced Rootkit Detection</h1>
+                <p class="lead">Kernel security requires understanding the boundary between user mode and kernel mode, drivers, callbacks, memory integrity, and trusted boot. This chapter stays focused on defensive analysis rather than instructions for building or deploying rootkits.</p>
+                <h2>8.1 User Mode vs Kernel Mode</h2>
+                <p>User-mode applications operate with restricted privileges. Kernel-mode components, including drivers, have significantly greater access and therefore a much larger impact if compromised.</p>
+                <h2>8.2 Driver Triage</h2>
+                <p>Investigate driver names, paths, publishers, signatures, service configuration, load times, and relationships to recently installed software. Unexpected kernel components deserve careful validation.</p>
+                <h2>8.3 ETW and Kernel Telemetry</h2>
+                <p>Windows provides multiple telemetry channels. Enterprise EDR products may combine ETW, kernel callbacks, protected components, sensor drivers, and cloud analytics. No single telemetry source should be considered infallible.</p>
+                <h2>8.4 VBS, HVCI and Trusted Computing</h2>
+                <p>Virtualization-based security can isolate sensitive security functions from ordinary kernel execution. Hardware-backed protections and Secure Boot also raise the cost of persistent low-level compromise.</p>
+                <h2>8.5 Detection Strategy</h2>
+                <ul><li>Compare expected driver inventory with observed state.</li><li>Validate signatures and provenance.</li><li>Correlate driver activity with installation events.</li><li>Use memory analysis when kernel manipulation is suspected.</li><li>Escalate suspected firmware compromise to specialist response teams.</li></ul>
+                <div class="chapter-nav"><a href="#ch7">← Previous</a><a href="#ch9">Next: UEFI &amp; Bootkits →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 8</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 9                                           -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch9" style="display:none;">
+                <div class="chapter-meta">Module 9 · Chapter 9</div>
+                <h1>UEFI, Bootkits &amp; Firmware Security</h1>
+                <p class="lead">Some threats operate before the operating system is fully running. Defenders therefore need a trusted-boot model that extends below Windows itself.</p>
+                <h2>9.1 Secure Boot</h2>
+                <p>Secure Boot establishes a chain of trust for boot components. Organizations should monitor its state and investigate unexpected changes to firmware or boot configuration.</p>
+                <h2>9.2 Firmware Risk</h2>
+                <p>Firmware compromise is uncommon but high impact. Evidence can involve firmware versions, configuration changes, platform security settings, and vendor-specific integrity mechanisms.</p>
+                <h2>9.3 CHIPSEC and Hardware Assessment</h2>
+                <p>CHIPSEC is a platform security assessment framework useful for authorized hardware and firmware checks. Run such assessments under documented procedures and interpret findings with platform-specific knowledge.</p>
+                <h2>9.4 Recovery</h2>
+                <p>If firmware compromise is credible, normal malware cleanup may be insufficient. Follow the hardware vendor's trusted recovery process, re-establish firmware trust, rotate relevant credentials where appropriate, and validate the boot chain afterward.</p>
+                <div class="chapter-nav"><a href="#ch8">← Previous</a><a href="#ch10">Next: Android Security →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 9</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 10                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch10" style="display:none;">
+                <div class="chapter-meta">Module 10 · Chapter 10</div>
+                <h1>Android Security &amp; ADB Forensics</h1>
+                <p class="lead">Android investigations require a different evidence model: applications run inside a permission and sandbox architecture, while ADB can provide authorized diagnostic access to devices prepared for development or enterprise investigation.</p>
+                <h2>10.1 ADB Basics</h2>
+                <div class="code-card"><div class="code-title">Authorized device inspection</div><pre>adb devices
+                    adb shell getprop
+                    adb shell pm list packages
+                    adb shell dumpsys activity activities
+                adb shell dumpsys package</pre></div>
+                <p>These commands help establish device identity, configuration, installed packages, and activity state. Availability varies by Android version and device policy.</p>
+                <h2>10.2 Android Evidence</h2>
+                <p>Potential evidence includes application metadata, logs, package installation history, permissions, network state, account configuration, and device security settings. Access to protected application data depends on Android version, device state, authorization, and acquisition method.</p>
+                <h2>10.3 Mobile Malware Analysis</h2>
+                <p>For authorized analysis, combine static inspection of APK metadata and code with controlled dynamic observation. Record package name, signing certificate, permissions, components, network endpoints, and behavioral observations.</p>
+                <div class="note"><strong>Do not bypass device security or access another person's device without authorization.</strong> Mobile forensics must follow applicable law, consent, and organizational procedures.</div>
+                <h2>10.4 Mobile Hardening</h2>
+                <p>Keep Android updated, use strong screen-lock protection, enable platform security features, install applications from trusted sources, review permissions, and use enterprise management where appropriate.</p>
+                <div class="chapter-nav"><a href="#ch9">← Previous</a><a href="#ch11">Next: Zero-Click →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 10</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 11                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch11" style="display:none;">
+                <div class="chapter-meta">Module 11 · Chapter 11</div>
+                <h1>Zero-Click Exploits, Messaging Threats &amp; Mobile Defense</h1>
+                <p class="lead">Modern messaging platforms have faced highly sophisticated vulnerabilities in which malicious content can trigger processing without an obvious user interaction. This chapter explains the defensive lifecycle without providing exploit construction or weaponization instructions.</p>
+                <h2>11.1 What “Zero-Click” Means</h2>
+                <p>A zero-click vulnerability is generally one where exploitation can occur with little or no deliberate user interaction. The vulnerable component may automatically parse messages, media, calls, documents, or other content.</p>
+                <h2>11.2 Why These Attacks Are Difficult</h2>
+                <p>Modern applications process complex formats automatically. A flaw in a parser, decoder, memory-management routine, or IPC boundary can therefore become security-relevant before a user consciously opens content.</p>
+                <h2>11.3 Defensive Detection</h2>
+                <ul><li>Keep the operating system and messaging application fully patched.</li><li>Monitor vendor security advisories and emergency updates.</li><li>Use mobile threat-defense or enterprise telemetry where appropriate.</li><li>Investigate unexplained crashes, battery/network anomalies, and unexpected application restarts.</li><li>Preserve device evidence before resetting a suspected compromised device.</li></ul>
+                <h2>11.4 If Compromise Is Suspected</h2>
+                <p>Isolate the device according to incident-response guidance, avoid deleting evidence unnecessarily, document the time and symptoms, notify the responsible security team, and use trusted recovery procedures. High-risk targets may require specialist mobile forensic analysis.</p>
+                <div class="callout"><strong>Important:</strong> Security research should use intentionally vulnerable test environments, vendor programs, or authorized laboratories. Do not test exploit techniques against real people's devices or production services.</div>
+                <div class="chapter-nav"><a href="#ch10">← Previous</a><a href="#ch12">Next: Reverse Engineering →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 11</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 12                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch12" style="display:none;">
+                <div class="chapter-meta">Module 12 · Chapter 12</div>
+                <h1>Reverse Engineering for Defenders</h1>
+                <p class="lead">Reverse engineering turns a compiled artifact into evidence. The objective of defensive RE is to understand what a program is designed to do, how it behaves, and whether that behavior is consistent with its stated purpose.</p>
+                <h2>12.1 Static Analysis</h2>
+                <p>Begin with file type, architecture, hashes, metadata, strings, imports, exports, embedded resources, and signatures. Tools such as Detect It Easy, PE-bear, Ghidra, and similar analyzers can help identify structure.</p>
+                <h2>12.2 Dynamic Analysis</h2>
+                <p>Execute only in an isolated, authorized laboratory. Observe process trees, file changes, registry activity, network communication, mutexes or synchronization objects, and persistence behavior.</p>
+                <h2>12.3 Ghidra Workflow</h2>
+                <ol><li>Import the sample into an isolated project.</li><li>Identify architecture and entry points.</li><li>Review strings and imported APIs.</li><li>Use the decompiler to understand relevant functions.</li><li>Rename functions and variables as understanding improves.</li><li>Correlate static findings with observed runtime behavior.</li></ol>
+                <h2>12.4 PE Structure</h2>
+                <p>Windows Portable Executable files contain headers, sections, imports, exports, resources, and other metadata. Abnormal section names, permissions, overlays, or unusual import patterns can be useful investigation leads.</p>
+                <h2>12.5 Anti-Analysis</h2>
+                <p>Malware may detect debuggers, sandboxes, or analysis artifacts. From a defender's perspective, treat anti-analysis behavior as a finding and use multiple independent observations rather than attempting to defeat protections on a real target.</p>
+                <div class="chapter-nav"><a href="#ch11">← Previous</a><a href="#ch13">Next: Malware Lab →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 12</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 13                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch13" style="display:none;">
+                <div class="chapter-meta">Module 13 · Chapter 13</div>
+                <h1>Malware Analysis Lab &amp; Safe Reverse Engineering</h1>
+                <p class="lead">A professional malware-analysis lab separates research from production. Isolation, repeatability, evidence preservation, and controlled observation are more important than collecting the largest number of tools.</p>
+                <h2>13.1 Lab Architecture</h2>
+                <p>Use dedicated virtual machines or hardware, snapshots, restricted networking, controlled DNS, and separate storage. Never assume that a virtual machine alone makes a malicious sample safe.</p>
+                <h2>13.2 Static-to-Dynamic Pipeline</h2>
+                <div class="compare"><div><h4>Static</h4><p>Hash → identify → metadata → strings → imports → structure → code review.</p></div><div><h4>Dynamic</h4><p>Controlled execution → process tree → filesystem/registry → network → timeline.</p></div></div>
+                <h2>13.3 Evidence</h2>
+                <p>Hash samples before and after analysis, keep notes, record tool versions, preserve screenshots only where useful, and maintain a clear chain of custody for incident-related evidence.</p>
+                <h2>13.4 Safe Reporting</h2>
+                <p>Document behavior, indicators, confidence, and defensive recommendations. Avoid publishing operational exploit details or live credentials. Where appropriate, share hashes and indicators through trusted intelligence channels.</p>
+                <div class="chapter-nav"><a href="#ch12">← Previous</a><a href="#ch14">Next: Threat Intelligence →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 13</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 14                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch14" style="display:none;">
+                <div class="chapter-meta">Module 14 · Chapter 14</div>
+                <h1>Threat Intelligence, YARA &amp; Detection Engineering</h1>
+                <p class="lead">Threat intelligence turns individual observations into reusable detections. Good detection engineering emphasizes durable behavior and context rather than brittle indicators alone.</p>
+                <h2>14.1 Indicators</h2>
+                <p>Hashes, domains, IP addresses, filenames, registry paths, and certificates can be useful, but they change. Behavioral and contextual detections often remain valuable longer.</p>
+                <h2>14.2 YARA</h2>
+                <p>YARA rules can classify files or memory content based on patterns. Build rules from stable characteristics and test them against both known positives and representative benign samples.</p>
+                <h2>14.3 Sigma and Log Detection</h2>
+                <p>Sigma-style detections express log-based behavior in a platform-neutral form. Focus on meaningful combinations such as suspicious parent-child relationships, unusual command interpreters, or unexpected persistence changes.</p>
+                <h2>14.4 Detection Lifecycle</h2>
+                <ol><li>Define the threat hypothesis.</li><li>Identify available telemetry.</li><li>Write a minimal detection.</li><li>Test against benign activity.</li><li>Measure false positives.</li><li>Add context and tuning.</li><li>Document and review periodically.</li></ol>
+                <div class="chapter-nav"><a href="#ch13">← Previous</a><a href="#ch15">Next: Incident Response →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 14</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 15                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch15" style="display:none;">
+                <div class="chapter-meta">Module 15 · Chapter 15</div>
+                <h1>Advanced Incident Response &amp; Digital Forensics</h1>
+                <p class="lead">Incident response is a controlled process for understanding, containing, eradicating, and learning from security events.</p>
+                <h2>15.1 Preparation</h2><p>Maintain logging, asset inventories, escalation contacts, backup strategies, forensic procedures, and tested recovery plans before an incident occurs.</p>
+                <h2>15.2 Identification</h2><p>Validate the alert, establish scope, identify affected accounts and assets, and create a preliminary timeline.</p>
+                <h2>15.3 Containment</h2><p>Choose short-term and long-term containment appropriate to the incident. Consider business impact, evidence preservation, and the possibility of attacker lateral movement.</p>
+                <h2>15.4 Eradication and Recovery</h2><p>Remove persistence, remediate vulnerabilities, reset compromised credentials where required, restore trusted systems, and monitor closely.</p>
+                <h2>15.5 Lessons Learned</h2><p>Determine why controls failed, which telemetry was missing, and what engineering changes will reduce recurrence.</p>
+                <div class="callout"><strong>Golden rule:</strong> containment is not the same as eradication. A disconnected endpoint can still contain evidence of compromise or persistence.</div>
+                <div class="chapter-nav"><a href="#ch14">← Previous</a><a href="#ch16">Next: Enterprise EDR →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 15</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 16                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch16" style="display:none;">
+                <div class="chapter-meta">Module 16 · Chapter 16</div>
+                <h1>Enterprise EDR, SIEM &amp; Security Operations</h1>
+                <p class="lead">Enterprise defense depends on collecting signals from endpoints, identities, cloud services, applications, and networks, then turning them into prioritized investigations.</p>
+                <h2>16.1 EDR</h2><p>Endpoint Detection and Response products collect endpoint telemetry and provide investigation and response capabilities. Their effectiveness depends on sensor health, configuration, coverage, and analyst interpretation.</p>
+                <h2>16.2 SIEM</h2><p>A SIEM correlates logs from many sources. Good normalization and asset identity are critical to producing useful investigations.</p>
+                <h2>16.3 SOC Workflow</h2><ol><li>Alert triage.</li><li>Enrichment.</li><li>Scope assessment.</li><li>Containment decision.</li><li>Evidence collection.</li><li>Remediation.</li><li>Post-incident review.</li></ol>
+                <h2>16.4 Purple Teaming</h2><p>Defenders can validate detections through controlled simulations in authorized environments. Measure whether expected telemetry appeared and whether analysts could investigate it.</p>
+                <div class="chapter-nav"><a href="#ch15">← Previous</a><a href="#ch17">Next: Hardening →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 16</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 17                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch17" style="display:none;">
+                <div class="chapter-meta">Module 17 · Chapter 17</div>
+                <h1>Security Hardening &amp; Prevention</h1>
+                <p class="lead">The best investigation is the one an organization never needs to perform. Hardening reduces attack surface and increases the cost of successful intrusion.</p>
+                <h2>17.1 Windows</h2><ul><li>Maintain security updates.</li><li>Use least privilege and application control.</li><li>Enable modern endpoint protection and tamper resistance.</li><li>Protect administrative accounts.</li><li>Collect high-value telemetry.</li></ul>
+                <h2>17.2 Android</h2><ul><li>Keep devices and apps patched.</li><li>Use strong device authentication.</li><li>Review application permissions.</li><li>Use managed-device controls for enterprise fleets.</li></ul>
+                <h2>17.3 Network</h2><ul><li>Segment sensitive systems.</li><li>Monitor egress traffic.</li><li>Use secure DNS and appropriate filtering.</li><li>Restrict administrative protocols.</li></ul>
+                <h2>17.4 People and Process</h2><p>Security awareness, incident playbooks, access reviews, vendor risk management, and tested backups are technical controls' essential partners.</p>
+                <div class="chapter-nav"><a href="#ch16">← Previous</a><a href="#ch18">Next: Playbooks →</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 17</footer>
+            </section>
+
+            <!-- ════════════════════════════════════════════════════ -->
+            <!--  CHAPTER 18                                          -->
+            <!-- ════════════════════════════════════════════════════ -->
+            <section id="ch18" style="display:none;">
+                <div class="chapter-meta">Module 18 · Chapter 18</div>
+                <h1>Analyst Playbooks &amp; Reference Workflows</h1>
+                <p class="lead">This chapter turns the handbook into repeatable operational playbooks.</p>
+                <h2>18.1 Suspicious Windows Process</h2><ol><li>Capture process identity and path.</li><li>Inspect parent-child relationship.</li><li>Check signature and hash.</li><li>Review file and registry activity.</li><li>Review network connections.</li><li>Correlate with Sysmon and Windows logs.</li><li>Assess scope and contain if required.</li></ol>
+                <h2>18.2 Suspicious Android Application</h2><ol><li>Record package and signing information.</li><li>Review permissions and components.</li><li>Check device telemetry.</li><li>Use an authorized lab for dynamic analysis.</li><li>Preserve evidence and escalate if compromise is suspected.</li></ol>
+                <h2>18.3 Suspected Firmware Compromise</h2><ol><li>Escalate to specialist responders.</li><li>Record platform and firmware state.</li><li>Validate Secure Boot and trusted measurements.</li><li>Use vendor-supported recovery procedures.</li><li>Re-establish trust before returning the system to service.</li></ol>
+                <h2>18.4 Final Analyst Checklist</h2>
+                <div class="checklist"><label>□ Define the hypothesis.</label><label>□ Preserve evidence.</label><label>□ Correlate independent telemetry.</label><label>□ Separate facts from assumptions.</label><label>□ Assess scope.</label><label>□ Contain safely.</label><label>□ Recover from a trusted state.</label><label>□ Document lessons learned.</label></div>
+                <div class="chapter-nav"><a href="#ch17">← Previous</a><a href="#introduction">↑ Contents</a></div>
+                <footer>Windows Threat Hunting &amp; Malware Analysis Handbook <span>•</span> Chapter 18</footer>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // ── sidebar toggle (mobile) ──
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle('open');
+        });
+
+        // close sidebar when clicking a nav link (on mobile)
+        document.querySelectorAll('.sidebar .nav').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 780) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        });
+
+        // ── SPA navigation: show/hide sections ──
+        const sections = {
+            intro: document.getElementById('introduction'),
+            ch1: document.getElementById('ch1'),
+            ch2: document.getElementById('ch2'),
+            ch3: document.getElementById('ch3'),
+            ch4: document.getElementById('ch4'),
+            ch5: document.getElementById('ch5'),
+            ch6: document.getElementById('ch6'),
+            ch7: document.getElementById('ch7'),
+            ch8: document.getElementById('ch8'),
+            ch9: document.getElementById('ch9'),
+            ch10: document.getElementById('ch10'),
+            ch11: document.getElementById('ch11'),
+            ch12: document.getElementById('ch12'),
+            ch13: document.getElementById('ch13'),
+            ch14: document.getElementById('ch14'),
+            ch15: document.getElementById('ch15'),
+            ch16: document.getElementById('ch16'),
+            ch17: document.getElementById('ch17'),
+            ch18: document.getElementById('ch18')
+        };
+
+        // map nav links to section ids
+        const navMap = {
+            '#introduction': 'intro',
+            '#ch1': 'ch1',
+            '#ch2': 'ch2',
+            '#ch3': 'ch3',
+            '#ch4': 'ch4',
+            '#ch5': 'ch5',
+            '#ch6': 'ch6',
+            '#ch7': 'ch7',
+            '#ch8': 'ch8',
+            '#ch9': 'ch9',
+            '#ch10': 'ch10',
+            '#ch11': 'ch11',
+            '#ch12': 'ch12',
+            '#ch13': 'ch13',
+            '#ch14': 'ch14',
+            '#ch15': 'ch15',
+            '#ch16': 'ch16',
+            '#ch17': 'ch17',
+            '#ch18': 'ch18'
+        };
+
+        function showSection(id) {
+            // hide all
+            Object.values(sections).forEach(el => { if (el) el.style.display = 'none'; });
+            // show target
+            const target = sections[id];
+            if (target) target.style.display = 'block';
+
+            // update sidebar active state
+            document.querySelectorAll('.sidebar .nav').forEach(link => {
+                link.classList.remove('active');
+                // match href to current section
+                const href = link.getAttribute('href');
+                if (href && navMap[href] === id) {
+                    link.classList.add('active');
+                }
+                // also match if href ends with #introduction etc
+                if (href && href === '#introduction' && id === 'intro') {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // handle link clicks inside main content (chapter-nav and TOC)
+        document.querySelectorAll('a[href^="#ch"], a[href^="#introduction"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const id = navMap[href];
+                if (id) {
+                    showSection(id);
+                    // update URL hash without scrolling
+                    history.pushState(null, '', href);
+                } else if (href === '#introduction') {
+                    showSection('intro');
+                    history.pushState(null, '', href);
+                }
+            });
+        });
+
+        // handle TOC grid links
+        document.querySelectorAll('.toc-grid a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const id = navMap[href];
+                if (id) {
+                    showSection(id);
+                    history.pushState(null, '', href);
+                }
+            });
+        });
+
+        // handle sidebar nav clicks
+        document.querySelectorAll('.sidebar .nav').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const id = navMap[href];
+                if (id) {
+                    showSection(id);
+                    history.pushState(null, '', href);
+                } else if (href === '#introduction') {
+                    showSection('intro');
+                    history.pushState(null, '', href);
+                }
+            });
+        });
+
+        // ── on page load, read hash ──
+        function loadFromHash() {
+            const hash = window.location.hash || '#introduction';
+            const id = navMap[hash];
+            if (id) {
+                showSection(id);
+            } else {
+                showSection('intro');
+            }
+        }
+
+        // handle back/forward
+        window.addEventListener('popstate', function() {
+            loadFromHash();
+        });
+
+        loadFromHash();
+    </script>
+
+</body>
+</html>
